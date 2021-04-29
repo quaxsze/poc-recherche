@@ -1,0 +1,11 @@
+{
+  "name": "poc-recherche",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "yarn install --cwd frontend --production false && yarn --cwd frontend run build && yarn install --cwd frontend --production true"
+  },
+  "engines": {
+    "node": "13.x",
+    "yarn": "1.x"
+  }
+}

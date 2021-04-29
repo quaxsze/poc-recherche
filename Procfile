@@ -1,2 +1,2 @@
-web: gunicorn wsgi:application
-release: flask init-db
+web: gunicorn --chdir backend app:app
+release: cd backend && python cli.py init-db
