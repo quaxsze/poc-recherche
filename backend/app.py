@@ -2,7 +2,7 @@ from werkzeug.wrappers import Response
 from elasticsearch import Elasticsearch, client
 from flask import Flask, render_template, jsonify, request, current_app
 from flask_cors import CORS
-from .config import Config
+from config import Config
 
 
 app: Flask = Flask(__name__,
