@@ -1,45 +1,31 @@
+import ast
 import csv
-from urllib.request import urlopen
-from tempfile import NamedTemporaryFile, _TemporaryFileWrapper
+from tempfile import NamedTemporaryFile
 
 import click
+from flask import current_app
+from flask.cli import with_appcontext
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
-from config import Config
+from backend.utils import download_catalog, download_baserow_api
 
 
-DATASET_CATALOG_URL = 'https://www.data.gouv.fr/fr/datasets/r/f868cca6-8da1-4369-a78d-47463f19a9a3'
-ORG_CATALOG_URL = 'https://www.data.gouv.fr/fr/datasets/r/b7bbfedc-2448-4135-a6c7-104548d396e7'
+def init_db():
+    es = Elasticsearch([current_app.config['ELASTICSEARCH_URL']])
 
-
-@click.group()
-def cli():
-    pass
-
-
-def download_catalog(url: str, fd: _TemporaryFileWrapper) -> None:
-    response = urlopen(url)
-    while True:
-        chunk = response.read(1024)
-        if not chunk:
-            break
-        fd.write(chunk)
-
-
-@cli.command()
-def init_db() -> None:
-    es = Elasticsearch([Config.ELASTICSEARCH_URL])
-
-    click.echo("Initializing the database.")
     try:
         es.indices.delete(index='datasets')
+        click.echo("Deleted the previous index.")
     except NotFoundError:
         pass
 
     with NamedTemporaryFile(delete=False) as dataset_fd:
-        download_catalog(DATASET_CATALOG_URL, dataset_fd)
+        download_catalog(current_app.config['DATASET_CATALOG_URL'], dataset_fd)
     with NamedTemporaryFile(delete=False) as org_fd:
-        download_catalog(ORG_CATALOG_URL, org_fd)
+        download_catalog(current_app.config['ORG_CATALOG_URL'], org_fd)
+
+    results_list: list = download_baserow_api(
+        current_app.config['BASEROW_ORG_TYPOLOGY_URL'])
 
     with open(dataset_fd.name) as dataset_csvfile, open(org_fd.name) as org_csvfile:
         dataset_rows = list(csv.DictReader(dataset_csvfile, delimiter=';'))
@@ -58,12 +44,24 @@ def init_db() -> None:
                     if org['id'] == dataset['organization_id']:
                         body.update({
                             'organization_name': org['name'],
-                            'organization_badges': org['badges']
+                            'organization_badges': ast.literal_eval(org['badges'])
                         })
+                        for result in results_list:
+                            if result['field_98460'] == org['id']:
+                                for item in ast.literal_eval(result['field_98464']):
+                                    body['organization_badges'].append(item)
+
                 es.index(index='datasets', id=counter, body=body)
                 counter += 1
+
+
+@click.command("init-db")
+@with_appcontext
+def init_db_command():
+    click.echo("Initializing the database.")
+    init_db()
     click.echo("Done.")
 
 
-if __name__ == "__main__":
-    cli()
+def init_app(app):
+    app.cli.add_command(init_db_command)
