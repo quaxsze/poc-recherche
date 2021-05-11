@@ -16,7 +16,7 @@ def download_catalog(url: str, fd: _TemporaryFileWrapper) -> None:
 
 def download_baserow_api(url: str) -> list:
     req: Request = Request(url)
-    req.add_header('Authorization', Config.BASEROW_API_TOKEN)
+    req.add_header('Authorization', f'Token {Config.BASEROW_API_TOKEN}')
 
     raw_content: bytes = urlopen(req).read()
     json_content: dict = json.loads(raw_content.decode('utf-8'))
