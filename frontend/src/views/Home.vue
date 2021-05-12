@@ -28,6 +28,7 @@
             <div class="mb-3">
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Recherche" v-model="form.search_text" required>
             </div>
+            <h5 class="font-bold">Requête initale :</h5>
             <div class="mb-3">
                 <label for="range-jdd-title" class="form-label">Pertinence du titre du jeu de données</label>
                 <input type="range" class="form-range" id="range-jdd-title" v-model="form.boost_dataset_title">
@@ -40,6 +41,7 @@
                 <label for="range-org-title" class="form-label">Pertinence du titre de l'organisation émétrice du jeu de données</label>
                 <input type="range" class="form-range" id="range-org-title" v-model="form.boost_org_title">
             </div>
+            <h5 class="font-bold">Post-traitement :</h5>
             <div class="mb-3">
                 <label for="range-jdd-featured" class="form-label">Poids de l'attribut "mis en avant" du jeu de données (featured)</label>
                 <input type="range" class="form-range" id="range-jdd-featured" v-model="form.weight_dataset_featured">
