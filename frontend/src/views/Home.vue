@@ -24,277 +24,94 @@
       </div>
     </header>
     <div class="md:max-w-screen-md mx-auto mt-16">
-      <form v-on:submit.prevent="checkForm" id="search-form">
-        <div class="fr-search-bar" id="header-search" role="search">
-            <label class="fr-label" for="search-784-input">
-                Recherche
-            </label>
-            <input class="fr-input" placeholder="Rechercher" type="search" id="search-784-input" name="search-784-input" v-model="form.search_text">
-        </div>
-        <div class="mt-6 font-bold">Requête initiale :</div>
-        <div class="mt-2 fr-form-group">
-            <fieldset class="fr-fieldset fr-fieldset--inline">
-                <legend class="fr-fieldset__legend fr-text--regular" id='radio-jdd-title-legend'>
-                    Pertinence du titre du jeu de données
-                </legend>
-                <div class="fr-fieldset__content">
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-1" name="radio-jdd-title" value="1" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-1">1</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-2" name="radio-jdd-title" value="2" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-2">2</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-3" name="radio-jdd-title" value="3" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-3">3</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-4" name="radio-jdd-title" value="4" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-4">4</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-5" name="radio-jdd-title" value="5" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-5">5</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-6" name="radio-jdd-title" value="6" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-6">6</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-7" name="radio-jdd-title" value="7" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-7">7</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-8" name="radio-jdd-title" value="8" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-8">8</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-9" name="radio-jdd-title" value="9" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-9">9</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-title-10" name="radio-jdd-title" value="10" v-model="form.boost_dataset_title">
-                        <label class="fr-label" for="radio-jdd-title-10">10</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="fr-form-group">
-            <fieldset class="fr-fieldset fr-fieldset--inline">
-                <legend class="fr-fieldset__legend fr-text--regular" id='radio-jdd-desc-legend'>
-                    Pertinence de la description du jeu de données
-                </legend>
-                <div class="fr-fieldset__content">
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-1" name="radio-jdd-desc" value="1" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-1">1</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-2" name="radio-jdd-desc" value="2" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-2">2</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-3" name="radio-jdd-desc" value="3" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-3">3</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-4" name="radio-jdd-desc" value="4" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-4">4</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-5" name="radio-jdd-desc" value="5" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-5">5</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-6" name="radio-jdd-desc" value="6" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-6">6</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-7" name="radio-jdd-desc" value="7" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-7">7</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-8" name="radio-jdd-desc" value="8" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-8">8</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-9" name="radio-jdd-desc" value="9" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-9">9</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-desc-10" name="radio-jdd-desc" value="10" v-model="form.boost_dataset_description">
-                        <label class="fr-label" for="radio-jdd-desc-10">10</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="fr-form-group">
-            <fieldset class="fr-fieldset fr-fieldset--inline">
-                <legend class="fr-fieldset__legend fr-text--regular" id='radio-org-title-legend'>
-                    Pertinence du titre de l'organisation émétrice du jeu de données
-                </legend>
-                <div class="fr-fieldset__content">
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-1" name="radio-org-title" value="1" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-1">1</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-2" name="radio-org-title" value="2" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-2">2</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-3" name="radio-org-title" value="3" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-3">3</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-4" name="radio-org-title" value="4" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-4">4</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-5" name="radio-org-title" value="5" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-5">5</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-6" name="radio-org-title" value="6" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-6">6</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-7" name="radio-org-title" value="7" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-7">7</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-8" name="radio-org-title" value="8" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-8">8</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-9" name="radio-org-title" value="9" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-9">9</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-title-10" name="radio-org-title" value="10" v-model="form.boost_org_title">
-                        <label class="fr-label" for="radio-org-title-10">10</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="font-bold">Post traitement du score :</div>
-        <div class="mt-2 fr-form-group">
-            <fieldset class="fr-fieldset fr-fieldset--inline">
-                <legend class="fr-fieldset__legend fr-text--regular" id='radio-jdd-featured-legend'>
-                    Poids de l'attribut "mis en avant" du jeu de données (featured)
-                </legend>
-                <div class="fr-fieldset__content">
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-1" name="radio-jdd-featured" value="1" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-1">1</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-2" name="radio-jdd-featured" value="2" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-2">2</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-3" name="radio-jdd-featured" value="3" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-3">3</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-4" name="radio-jdd-featured" value="4" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-4">4</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-5" name="radio-jdd-featured" value="5" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-5">5</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-6" name="radio-jdd-featured" value="6" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-6">6</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-7" name="radio-jdd-featured" value="7" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-7">7</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-8" name="radio-jdd-featured" value="8" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-8">8</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-9" name="radio-jdd-featured" value="9" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-9">9</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-jdd-featured-10" name="radio-jdd-featured" value="10" v-model="form.weight_dataset_featured">
-                        <label class="fr-label" for="radio-jdd-featured-10">10</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="fr-form-group">
-            <fieldset class="fr-fieldset fr-fieldset--inline">
-                <legend class="fr-fieldset__legend fr-text--regular" id='radio-org-badge-legend'>
-                    Poids de la présence du badge "service public" de l'organisation émétrice du jeu de données
-                </legend>
-                <div class="fr-fieldset__content">
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-1" name="radio-org-badge" value="1" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-1">1</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-2" name="radio-org-badge" value="2" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-2">2</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-3" name="radio-org-badge" value="3" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-3">3</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-4" name="radio-org-badge" value="4" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-4">4</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-5" name="radio-org-badge" value="5" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-5">5</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-6" name="radio-org-badge" value="6" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-6">6</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-7" name="radio-org-badge" value="7" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-7">7</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-8" name="radio-org-badge" value="8" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-8">8</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-9" name="radio-org-badge" value="9" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-9">9</label>
-                    </div>
-                    <div class="fr-radio-group">
-                        <input type="radio" id="radio-org-badge-10" name="radio-org-badge" value="10" v-model="form.weight_org_badge">
-                        <label class="fr-label" for="radio-org-badge-10">10</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <button class="fr-btn" type="submit">Valider</button>
-      </form>
+        <form v-on:submit.prevent="checkForm" id="search-form">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Recherche" v-model="form.search_text" required>
+            </div>
+            <div class="mb-3">
+                <label for="range-jdd-title" class="form-label">Pertinence du titre du jeu de données</label>
+                <input type="range" class="form-range" id="range-jdd-title" v-model="form.boost_dataset_title">
+            </div>
+            <div class="mb-3">
+                <label for="range-jdd-desc" class="form-label">Pertinence de la description du jeu de données</label>
+                <input type="range" class="form-range" id="range-jdd-desc" v-model="form.boost_dataset_description">
+            </div>
+            <div class="mb-3">
+                <label for="range-org-title" class="form-label">Pertinence du titre de l'organisation émétrice du jeu de données</label>
+                <input type="range" class="form-range" id="range-org-title" v-model="form.boost_org_title">
+            </div>
+            <div class="mb-3">
+                <label for="range-jdd-featured" class="form-label">Poids de l'attribut "mis en avant" du jeu de données (featured)</label>
+                <input type="range" class="form-range" id="range-jdd-featured" v-model="form.weight_dataset_featured">
+            </div>
+            <div class="mb-3">
+                <label for="range-org-public" class="form-label">Poids de la présence du badge "service public" de l'organisation émétrice du jeu de données</label>
+                <input type="range" class="form-range" id="range-org-public" v-model="form.weight_org_public_service">
+            </div>
+            <div class="mb-3">
+                <label for="range-org-badge" class="form-label">Poids de la typologie de l'organisation émétrice du jeu de données</label>
+                <input type="range" class="form-range" id="range-org-badge" v-model="form.weight_org_badge">
+            </div>
+            <button type="submit" class="btn btn-primary">Valider</button>
+        </form>
     </div>
     <div class="md:max-w-screen-lg mx-auto mt-16">
-      <div v-for="result in resultList" :key="result.id">
-        <div class="fr-card fr-card--horizontal fr-enlarge-link mb-6">
-          <div class="fr-card__body">
-            <p class="fr-card__detail">{{ result.source.organization_name }}</p>
-            <h4 class="fr-card__title">
-                <a :href="result.source.url" class="fr-card__link">{{ result.source.title }}</a>
-            </h4>
-            <p class="fr-card__desc">{{ result.source.description }}</p>
-          </div>
+        <div v-for="result in resultList" :key="result.id">
+            <div class="relative py-3 md:max-w-screen-lg md:mx-auto">
+                <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl">
+                    <div class="max-w-4xl mx-auto">
+                        <p class="text-xs text-gray-500">{{ result.source.organization_name }}</p>
+                        <p class="text-4xl mt-4">{{ result.source.title }}</p>
+                    <div class="divide-y divide-gray-200">
+                        <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                            <p>{{ result.source.description }}</p>
+                        </div>
+                        <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+                            <div>
+                                <!-- Button trigger modal -->
+                                <div class="btn-group">
+                                    <a class="btn btn-primary" :href="result.source.url" role="button">Lien DGF</a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#modal-result-${result.source.remote_id}`">
+                                        Explication
+                                    </button>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" :id="`modal-result-${result.source.remote_id}`" tabindex="-1" :aria-labelledby="`modal-result-${result.source.remote_id}-Label`" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" :id="`modal-result-${result.source.remote_id}-Label`">{{ result.source.title }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <h5>Infos :</h5>
+                                                    <p>Jeu de données mis en avant : {{ result.source.featured }}</p>
+                                                    <div v-for="badge in result.source.organization_badges" :key="badge.id">
+                                                        <span class="badge rounded-pill bg-secondary">{{ badge }}</span>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="mt-3 mb-2">
+                                                    <h5>Explain :</h5>
+                                                    <code>{{ result.explain }}</code>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -312,8 +129,9 @@ export default {
         boost_dataset_title: 1,
         boost_dataset_description: 1,
         boost_org_title: 1,
-        weight_dataset_featured: 10,
-        weight_org_badge: 2
+        weight_dataset_featured: 1,
+        weight_org_public_service: 1,
+        weight_org_badge: 1
       },
       resultList: []
     }

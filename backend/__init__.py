@@ -25,7 +25,6 @@ def create_app() -> Flask:
     for result in result_list:
         if result['field_98434']:
             app.config['ORG_BADGES_TO_BOOST'].append(result['field_98433'])
-    app.config['ORG_BADGES_TO_BOOST'].append('public-service')
 
     # register the database command
     from backend import db

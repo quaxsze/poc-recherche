@@ -12,6 +12,7 @@ def api() -> Response:
     description_boost: int = request.json['boost_dataset_description']
     org_title_boost: int = request.json['boost_org_title']
     weight_dataset_featured: int = request.json['weight_dataset_featured']
+    weight_org_public_service: int = request.json['weight_org_public_service']
     weight_org_badge: int = request.json['weight_org_badge']
 
     fields: list = [
@@ -42,6 +43,14 @@ def api() -> Response:
                     },
                     {
                         "filter": {
+                            "match": {
+                                "organization_badges": "public-service"
+                            }
+                        },
+                        "weight": weight_org_public_service
+                    },
+                    {
+                        "filter": {
                             "terms": {
                                 "organization_badges.keyword": current_app.config['ORG_BADGES_TO_BOOST']
                             }
@@ -66,6 +75,25 @@ def api() -> Response:
     return jsonify({
         "results_number": results_number,
         "results": res
+    })
+
+
+@bp.route("/api/<dataset_remote_id>", methods=["GET"])
+def get_dataset(dataset_remote_id: str) -> Response:
+    es: client.Elasticsearch = current_app.elasticsearch
+
+    query_body: dict = {
+        "query": {
+            "term": {
+                "remote_id": {
+                    "value": dataset_remote_id
+                }
+            }
+        }
+    }
+    result: dict = es.search(index='datasets', body=query_body, explain=True)
+    return jsonify({
+        "dataset": result['hits']['hits'][0]['_source']
     })
 
 
