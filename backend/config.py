@@ -8,7 +8,7 @@ class Config(object):
     ELASTICSEARCH_PORT = os.environ.get(
         'DOKKU_ELASTICSEARCH_POC_RECHERCHE_INDEX_PORT_9200_TCP_PORT') or '9200'
     ELASTICSEARCH_URL = f'http://{ELASTICSEARCH_ADDR}:{ELASTICSEARCH_PORT}'
-    BASEROW_API_TOKEN = os.environ.get('POC_RECHERCHE_BASEROW_API_TOKEN') or 'secret-secret'
+    BASEROW_API_TOKEN = os.environ.get('POC_RECHERCHE_BASEROW_API_TOKEN') or 'secret'
     BASEROW_ORG_TYPOLOGY_URL = 'https://api.baserow.io/api/database/rows/table/18703/'
     BASEROW_ORG_BADGES_TO_BOOST_URL = 'https://api.baserow.io/api/database/rows/table/18698/'
     DATASET_CATALOG_URL = 'https://www.data.gouv.fr/fr/datasets/r/f868cca6-8da1-4369-a78d-47463f19a9a3'
